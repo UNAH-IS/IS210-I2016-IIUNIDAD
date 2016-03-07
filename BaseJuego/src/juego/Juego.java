@@ -13,23 +13,26 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import clases.Auto;
+
 public class Juego extends Canvas implements KeyListener{
 	private JFrame ventana;
 	private BufferStrategy dobleBuffer;
-	private boolean jugando  = false;
-
 	private Graphics2D g2D;
 	
-	private static final int ANCHO_VENTANA = 700/*DEFINA SUS PROPIAS DIMENSIONES*/;
-	private static final int ALTO_VENTANA = 500/*DEFINA SUS PROPIAS DIMENSIONES*/;
+	private boolean jugando  = false;
+
+	public static final int ANCHO_VENTANA = 700/*DEFINA SUS PROPIAS DIMENSIONES*/;
+	public static final int ALTO_VENTANA = 500/*DEFINA SUS PROPIAS DIMENSIONES*/;
 	
 	int lastFpsTime; //Variable auxiliar para calculo de la pausa del ciclo principal
 	int fps; //Fotogramas por segundo
 	
 	private HashMap<String,BufferedImage> imagenes = new HashMap<String,BufferedImage>();
+	private Auto auto; //Lo mejor es almacenar los objetos de juego en un ArrayList
 	
 	public Juego(){
-		//cargarImagenes();
+		cargarImagenes();
 		inicializarObjetosJuego();
 		//Crear la ventana y establecer sus propiedades
 		
@@ -53,14 +56,15 @@ public class Juego extends Canvas implements KeyListener{
 	}
 	
 	public void inicializarObjetosJuego(){
-		
+		auto = new Auto("Juan", 200,200,2,"auto");
 	}
 	
 	//Cargar Imagenes
 	public void cargarImagenes(){
 		//Es mas conveniente almacenar las imagenes en un hashmap para poder darle un alias.
 		try {
-			imagenes.put("LLAVE", ImageIO.read(getClass().getResource("IMAGEN")));
+			imagenes.put("auto", ImageIO.read(getClass().getResource("/recursos/auto.png")));
+			imagenes.put("auto_furioso", ImageIO.read(getClass().getResource("/recursos/auto_rapido_furioso.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -78,13 +82,14 @@ public class Juego extends Canvas implements KeyListener{
         g2D.drawString("Dibuje en esta seccion los componentes",30,30); //Dibujar un string
         
         //Pintar el auto
+        auto.pintar(g2D, imagenes.get(auto.getLlaveImagen()), this);
         
         dobleBuffer.show(); //Mostrar lo que se ha dibujado
 	}
 	
 	public void actualizar(){
 		//Agregue aqui el codigo necesario para actualizar los componentes de juego y construir la logica del juego
-		
+		auto.mover();
 	}
 
 	public void cicloPrincipal(){
@@ -121,14 +126,20 @@ public class Juego extends Canvas implements KeyListener{
 	//Metodo que se ejecuta cuando el usuario presiona una tecla
 	public void keyPressed(KeyEvent e){
         switch(e.getKeyCode()){
-            
+        	case KeyEvent.VK_SPACE:
+        			auto.setVelocidad(5);
+        			auto.setLlaveImagen("auto_furioso");
+        		break;
         }
     }
 
 	//Metodo que se ejecuta cuando el usuario suelta una tecla
     public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()){
-                 
+	        case KeyEvent.VK_SPACE:
+				auto.setVelocidad(2);
+				auto.setLlaveImagen("auto");
+			break;
         }
     }    
     //Sin uso, pero a fuerzas se debe redefinir
