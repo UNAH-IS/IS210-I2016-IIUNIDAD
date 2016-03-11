@@ -8,8 +8,14 @@ public class Telefono {
 	private String sistemaOperativo;
 	private double precio;
 	private int almacenamientoBytes;
-	public Telefono(String marca, String modelo, String numero, String imei,
-			String sistemaOperativo, double precio, int almacenamientoBytes) {
+	public Telefono(String marca, 
+			String modelo, 
+			String numero, 
+			String imei,
+			String sistemaOperativo, 
+			double precio, 
+			int almacenamientoBytes
+	) {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;

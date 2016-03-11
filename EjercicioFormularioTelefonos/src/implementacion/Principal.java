@@ -1,12 +1,19 @@
 package implementacion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import clases.Telefono;
 
 public class Principal {
 	private JFrame ventana;
@@ -35,12 +42,16 @@ public class Principal {
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	
+	private ArrayList<Telefono> telefonos;
+	
 	public Principal(){
+		telefonos = new ArrayList<Telefono>();
 		inicializarVentana();
 		inicializarComponentes();
 		ubicarComponentes();
 		agregarComponentes();
 		definirPropiedades();
+		registrarEventos();
 		ventana.setVisible(true);
 	}
 	
@@ -144,6 +155,86 @@ public class Principal {
 		ventana.add(scrlResultado);
 		scrlResultado.setViewportView(txtResultado);
 		
+	}
+	
+	public void registrarEventos(){
+		btnGuardar.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				guardarRegistro();
+			}
+		});
+		
+		btnActualizar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				actualizarRegistro();
+			}
+		});
+		btnEliminar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				eliminarRegistro();
+			}
+		});
+		btnNuevo.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				nuevoRegistro();
+			}			
+		});
+		
+	}
+	
+	public void nuevoRegistro(){
+		txtMarca.setText(null);
+		txtModelo.setText(null);
+		txtNumero.setText(null);
+		txtIMEI.setText(null);
+		txtSistemaOperativo.setText(null);
+		txtPrecio.setText(null);
+		txtAlmacenamiento.setText(null);
+	}
+	
+	public void guardarRegistro(){
+		telefonos.add(new Telefono(
+				txtMarca.getText(),
+				txtModelo.getText(),
+				txtNumero.getText(),
+				txtIMEI.getText(),
+				txtSistemaOperativo.getText(),
+				Double.valueOf(txtPrecio.getText()),
+				Integer.valueOf(txtAlmacenamiento.getText())
+		));
+		mostrarInformacion();
+	}
+	
+	public void actualizarRegistro(){
+		int indice = Integer.valueOf(JOptionPane.showInputDialog("Que elemento desea actualzar?"));
+		telefonos.set(indice, new Telefono(
+				txtMarca.getText(),
+				txtModelo.getText(),
+				txtNumero.getText(),
+				txtIMEI.getText(),
+				txtSistemaOperativo.getText(),
+				Double.valueOf(txtPrecio.getText()),
+				Integer.valueOf(txtAlmacenamiento.getText())
+		));
+		mostrarInformacion();
+	}
+	
+	public void eliminarRegistro(){
+		int indice = Integer.valueOf(JOptionPane.showInputDialog("Que elemento desea eliminar?"));
+		telefonos.remove(indice);
+		mostrarInformacion();
+	}
+	
+	public void mostrarInformacion(){
+		//Limpiar el TextArea
+		txtResultado.setText(null);
+		//Llena utilizando un for each
+		for(Telefono t: telefonos)
+			txtResultado.append(t.toString() + "\n");
 	}
 	
 	public static void main(String args[]){

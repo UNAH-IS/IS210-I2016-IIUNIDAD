@@ -55,7 +55,8 @@ public class Ventana implements ActionListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent evento) {
+		//evento.getSource()
 		JOptionPane.showMessageDialog(ventana, 
 				"Hola " + txtMensaje.getText());
 	}
