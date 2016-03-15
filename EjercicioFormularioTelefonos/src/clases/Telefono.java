@@ -1,22 +1,21 @@
 package clases;
 
 public class Telefono {
-	private String marca;
-	private String modelo;
+	private Marca marca; //Composicion
+	private Modelo modelo;
 	private String numero;
 	private String imei;
 	private String sistemaOperativo;
 	private double precio;
 	private int almacenamientoBytes;
-	public Telefono(String marca, 
-			String modelo, 
+	public Telefono(Marca marca, 
+			Modelo modelo, 
 			String numero, 
 			String imei,
 			String sistemaOperativo, 
 			double precio, 
 			int almacenamientoBytes
 	) {
-		super();
 		this.marca = marca;
 		this.modelo = modelo;
 		this.numero = numero;
@@ -25,16 +24,16 @@ public class Telefono {
 		this.precio = precio;
 		this.almacenamientoBytes = almacenamientoBytes;
 	}
-	public String getMarca() {
+	public Marca getMarca() {
 		return marca;
 	}
-	public void setMarca(String marca) {
+	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
-	public String getModelo() {
+	public Modelo getModelo() {
 		return modelo;
 	}
-	public void setModelo(String modelo) {
+	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
 	}
 	public String getNumero() {
