@@ -4,16 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import clases.Marca;
+import clases.Modelo;
 import clases.Telefono;
 
 public class Principal {
@@ -27,11 +31,10 @@ public class Principal {
 	private JLabel lblPrecio;
 	private JLabel lblAlmacenamiento;
 	
-	private JComboBox<String> cboMarca;
-	private JTextField txtModelo;
+	private JComboBox<Marca> cboMarca;
+	private JComboBox<Modelo> cboModelo;
 	private JTextField txtNumero;
 	private JTextField txtIMEI;
-	private JTextField txtSistemaOperativo;
 	private JTextField txtPrecio;
 	private JTextField txtAlmacenamiento;
 	
@@ -42,6 +45,10 @@ public class Principal {
 	private JButton btnActualizar;
 	private JButton btnEliminar;
 	private JButton btnNuevo;
+	
+	private JRadioButton rbtAndroid;
+	private JRadioButton rbtIOS;
+	private ButtonGroup grupoSO;
 	
 	private ArrayList<Telefono> telefonos;
 	
@@ -75,11 +82,10 @@ public class Principal {
 		lblPrecio = new JLabel("Precio:");
 		lblAlmacenamiento = new JLabel("Almacenamiento:");
 		
-		cboMarca = new JComboBox<String>();
-		txtModelo = new JTextField();
+		cboMarca = new JComboBox<Marca>();
+		cboModelo = new JComboBox<Modelo>();
 		txtNumero = new JTextField();
 		txtIMEI = new JTextField();
-		txtSistemaOperativo = new JTextField();
 		txtPrecio = new JTextField();
 		txtAlmacenamiento = new JTextField();
 		
@@ -90,11 +96,19 @@ public class Principal {
 		btnActualizar = new JButton("Actualizar");
 		btnEliminar = new JButton("Eliminar");
 		btnNuevo = new JButton("Nuevo");
+		
+		rbtAndroid = new JRadioButton("Android");
+		rbtIOS = new JRadioButton("iOS");
+		grupoSO = new ButtonGroup();
 	}
 	
 	public void llenarInformacionInicial(){
-		cboMarca.addItem("Samsung");
-		cboMarca.addItem("Chino");
+		cboMarca.addItem(new Marca(1, "Samsung"));
+		cboMarca.addItem(new Marca(2, "Chino"));
+		
+		cboModelo.addItem(new Modelo(1,"S5","S5"));
+		cboModelo.addItem(new Modelo(1,"S6","S6"));
+		cboModelo.addItem(new Modelo(1,"S7","S7"));
 	}
 	
 	public void ubicarComponentes(){
@@ -107,10 +121,9 @@ public class Principal {
 		lblAlmacenamiento.setBounds(20, 260, 100, 25);
 		
 		cboMarca.setBounds(125,20,200, 25);
-		txtModelo.setBounds(125, 60, 200, 25);
+		cboModelo.setBounds(125, 60, 200, 25);
 		txtNumero.setBounds(125, 100, 200, 25); 
 		txtIMEI.setBounds(125, 140, 200, 25);
-		txtSistemaOperativo.setBounds(125, 180, 200, 25);
 		txtPrecio.setBounds(125, 220, 200, 25);
 		txtAlmacenamiento.setBounds(125, 260, 200, 25);
 		
@@ -120,6 +133,9 @@ public class Principal {
 		btnActualizar.setBounds(330, 60, 100, 30);
 		btnEliminar.setBounds(330, 100, 100, 30);
 		btnNuevo.setBounds(330, 140, 100, 30);
+		
+		rbtAndroid.setBounds(125,180,70,20);
+		rbtIOS.setBounds(200,180,100,20);
 	}
 	
 	public void definirPropiedades(){
@@ -147,10 +163,9 @@ public class Principal {
 		ventana.add(lblAlmacenamiento);
 		
 		ventana.add(cboMarca);
-		ventana.add(txtModelo);
+		ventana.add(cboModelo);
 		ventana.add(txtNumero);
 		ventana.add(txtIMEI);
-		ventana.add(txtSistemaOperativo);
 		ventana.add(txtPrecio);
 		ventana.add(txtAlmacenamiento);
 		
@@ -158,6 +173,9 @@ public class Principal {
 		ventana.add(btnActualizar);
 		ventana.add(btnEliminar);
 		ventana.add(btnNuevo);
+		
+		ventana.add(rbtAndroid);
+		ventana.add(rbtIOS);
 		
 		ventana.add(scrlResultado);
 		scrlResultado.setViewportView(txtResultado);
@@ -194,23 +212,21 @@ public class Principal {
 	}
 	
 	public void nuevoRegistro(){
-		//txtMarca.setText(null);
-		txtModelo.setText(null);
+		cboMarca.setSelectedItem(null);
+		cboModelo.setSelectedItem(null);
 		txtNumero.setText(null);
 		txtIMEI.setText(null);
-		txtSistemaOperativo.setText(null);
 		txtPrecio.setText(null);
 		txtAlmacenamiento.setText(null);
 	}
 	
 	public void guardarRegistro(){
 		telefonos.add(new Telefono(
-				null,
-				//txtMarca.getText(),
-				txtModelo.getText(),
+				(Marca)cboMarca.getSelectedItem(),
+				(Modelo)cboModelo.getSelectedItem(),
 				txtNumero.getText(),
 				txtIMEI.getText(),
-				txtSistemaOperativo.getText(),
+				null,
 				Double.valueOf(txtPrecio.getText()),
 				Integer.valueOf(txtAlmacenamiento.getText())
 		));
@@ -220,12 +236,11 @@ public class Principal {
 	public void actualizarRegistro(){
 		int indice = Integer.valueOf(JOptionPane.showInputDialog("Que elemento desea actualzar?"));
 		telefonos.set(indice, new Telefono(
-				null,
-				//txtMarca.getText(),
-				txtModelo.getText(),
+				(Marca)cboMarca.getSelectedItem(),
+				(Modelo)cboModelo.getSelectedItem(),
 				txtNumero.getText(),
 				txtIMEI.getText(),
-				txtSistemaOperativo.getText(),
+				null,
 				Double.valueOf(txtPrecio.getText()),
 				Integer.valueOf(txtAlmacenamiento.getText())
 		));

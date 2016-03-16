@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.ArrayList;
+
 public class Telefono {
 	private Marca marca; //Composicion
 	private Modelo modelo;
@@ -8,6 +10,7 @@ public class Telefono {
 	private String sistemaOperativo;
 	private double precio;
 	private int almacenamientoBytes;
+	private ArrayList<String> operadores=new ArrayList<String>();
 	public Telefono(Marca marca, 
 			Modelo modelo, 
 			String numero, 
@@ -24,6 +27,10 @@ public class Telefono {
 		this.precio = precio;
 		this.almacenamientoBytes = almacenamientoBytes;
 	}
+	public void agregarOperador(String operador){
+		operadores.add(operador);
+	}
+		
 	public Marca getMarca() {
 		return marca;
 	}
@@ -71,6 +78,7 @@ public class Telefono {
 		return "Telefono [marca=" + marca + ", modelo=" + modelo + ", numero="
 				+ numero + ", imei=" + imei + ", sistemaOperativo="
 				+ sistemaOperativo + ", precio=" + precio
-				+ ", almacenamientoBytes=" + almacenamientoBytes + "]";
+				+ ", almacenamientoBytes=" + almacenamientoBytes + "]"+
+				operadores;
 	}
 }
