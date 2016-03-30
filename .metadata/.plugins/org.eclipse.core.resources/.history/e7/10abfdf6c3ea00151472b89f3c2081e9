@@ -1,7 +1,0 @@
-package clases;
-
-public class Marca {
-	private int codigoMarca;
-	private String nombreMarca;
-	
-}

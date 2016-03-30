@@ -64,6 +64,7 @@ public class Juego extends Canvas implements KeyListener{
 		//Es mas conveniente almacenar las imagenes en un hashmap para poder darle un alias.
 		try {
 			imagenes.put("auto", ImageIO.read(getClass().getResource("/recursos/auto.png")));
+			imagenes.put("auto2", ImageIO.read(getClass().getResource("/recursos/auto2.png")));
 			imagenes.put("auto_furioso", ImageIO.read(getClass().getResource("/recursos/auto_rapido_furioso.png")));
 		} catch (IOException e) {
 			e.printStackTrace();

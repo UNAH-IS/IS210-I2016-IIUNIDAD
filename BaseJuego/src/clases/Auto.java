@@ -14,6 +14,8 @@ public class Auto {
 	private int anchoImagen;
 	private int altoImagen;
 	private String llaveImagen;
+	
+	private int contadorImagen = 0;
 	public Auto(String nombreJugador, int x, int y, int velocidad, String llaveImagen) {
 		this.nombreJugador = nombreJugador;
 		this.x = x;
@@ -74,6 +76,16 @@ public class Auto {
 	}
 	
 	public void mover(){
+		System.out.println("contadorImagen: "+contadorImagen);
+		
+		if(contadorImagen>=5){
+			llaveImagen = "auto2";
+			contadorImagen=0;
+		} else if(contadorImagen == 1){
+			llaveImagen = "auto";
+		}
+		contadorImagen++;
+			
 		if (x>Juego.ANCHO_VENTANA)
 			x = -100;
 		x+=velocidad;

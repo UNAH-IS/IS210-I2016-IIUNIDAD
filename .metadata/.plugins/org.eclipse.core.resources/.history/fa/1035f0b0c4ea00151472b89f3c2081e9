@@ -1,9 +1,0 @@
-package clases;
-
-public class Modelo {
-	private int codigoModelo;
-	private String nombreModelo;
-	private String abreviatura;
-	
-	
-}

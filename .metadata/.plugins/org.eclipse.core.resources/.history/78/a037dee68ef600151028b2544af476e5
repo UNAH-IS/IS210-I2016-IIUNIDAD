@@ -1,0 +1,60 @@
+package formularios;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+public class FormularioPrincipal extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		FormularioPrincipal frame = new FormularioPrincipal();
+		frame.setVisible(true);
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public FormularioPrincipal() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 334);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmOpen = new JMenuItem("Open");
+		mnFile.add(mntmOpen);
+		
+		JMenu mnOtrasOpciones = new JMenu("Otras opciones");
+		mnFile.add(mnOtrasOpciones);
+		
+		JMenuItem mntmOpcion = new JMenuItem("Opcion 1");
+		mnOtrasOpciones.add(mntmOpcion);
+		
+		JMenuItem mntmOpcion_1 = new JMenuItem("Opcion 2");
+		mnOtrasOpciones.add(mntmOpcion_1);
+		
+		JMenu mnOtrasOpciones_1 = new JMenu("Otras opciones");
+		mnOtrasOpciones.add(mnOtrasOpciones_1);
+		
+		JMenuItem mntmOtraMas = new JMenuItem("Otra mas");
+		mnOtrasOpciones_1.add(mntmOtraMas);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+	}
+}
