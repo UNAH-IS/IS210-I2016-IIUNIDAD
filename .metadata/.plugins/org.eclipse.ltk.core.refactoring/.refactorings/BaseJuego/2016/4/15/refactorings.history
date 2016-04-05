@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Auto.java&apos; to &apos;BaseJuego/src/clases&apos;&#x0D;&#x0A;- Original project: &apos;BaseJuego&apos;&#x0D;&#x0A;- Destination element: &apos;BaseJuego/src/clases&apos;&#x0D;&#x0A;- Original element: &apos;clases.Auto.java&apos;" description="Copy compilation unit" destination="/src&lt;clases" element1="/src&lt;clases{Auto.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1459783664346" units="1" version="1.0"/>
+</session>
