@@ -1,0 +1,17 @@
+package formularios;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+
+public class FormularioRegistroMarcas extends JInternalFrame {
+
+	/**
+	 * Create the frame.
+	 */
+	public FormularioRegistroMarcas() {
+		setBounds(100, 100, 450, 300);
+
+	}
+
+}

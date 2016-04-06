@@ -3,4 +3,8 @@
 	<moveCategory
 		id="org.eclipse.wb.swing.actions"
 		nextCategory="org.eclipse.wb.swing.components.awt"/>
+	<moveEntry
+		id="org.eclipse.wb.swing.components javax.swing.JLabel"
+		category="org.eclipse.wb.swing.components"
+		nextEntry="org.eclipse.wb.swing.components javax.swing.JTextArea"/>
 </commands>

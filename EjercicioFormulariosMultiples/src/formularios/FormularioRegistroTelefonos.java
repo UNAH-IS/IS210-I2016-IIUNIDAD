@@ -33,7 +33,7 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 	private JLabel lblAlmacenamiento;
 	private JLabel lblOperador;
 	
-	private JComboBox<Marca> cboMarca;
+	public static JComboBox<Marca> cboMarca;
 	private JComboBox<Modelo> cboModelo;
 	private JTextField txtNumero;
 	private JTextField txtIMEI;
@@ -59,22 +59,6 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 	private ButtonGroup grupoSO;
 	
 	private ArrayList<Telefono> telefonos;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FormularioRegistroTelefonos frame = new FormularioRegistroTelefonos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */

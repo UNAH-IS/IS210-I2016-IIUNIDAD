@@ -15,12 +15,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 public class FormularioPrincipal extends JFrame {
 
 	private JDesktopPane contentPane;
 	private JMenuItem mntmSalir;
-	private JInternalFrame frmRegistroMarcas;
+	private FormularioRegistroMarcas frmRegistroMarcas;
 	private JMenuItem mntmRegistrarMarca;
 	private FormularioRegistroTelefonos frmRegistroTelefonos;
 	private JInternalFrame frmRegistroModelos;
@@ -28,6 +29,8 @@ public class FormularioPrincipal extends JFrame {
 	private JMenuItem mntmRegistrarModelo;
 	private JToolBar toolBar;
 	private JButton btnAbrir;
+	private JButton btnNewButton;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -66,12 +69,12 @@ public class FormularioPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		frmRegistroMarcas = new JInternalFrame("Registrar Marca");
+		frmRegistroMarcas = new FormularioRegistroMarcas();
+		frmRegistroMarcas.setLocation(20, 98);
 		frmRegistroMarcas.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frmRegistroMarcas.setMaximizable(true);
 		frmRegistroMarcas.setIconifiable(true);
 		frmRegistroMarcas.setClosable(true);
-		frmRegistroMarcas.setBounds(461, 45, 282, 198);
 		contentPane.add(frmRegistroMarcas);
 		
 		frmRegistroModelos = new JInternalFrame("Registrar Modelos");
@@ -79,10 +82,21 @@ public class FormularioPrincipal extends JFrame {
 		frmRegistroModelos.setClosable(true);
 		frmRegistroModelos.setIconifiable(true);
 		frmRegistroModelos.setMaximizable(true);
-		frmRegistroModelos.setBounds(10, 338, 275, 198);
+		frmRegistroModelos.setBounds(599, 83, 275, 198);
 		contentPane.add(frmRegistroModelos);
+		frmRegistroModelos.getContentPane().setLayout(null);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(23, 57, 89, 23);
+		frmRegistroModelos.getContentPane().add(btnNewButton);
+		
+		textField = new JTextField();
+		textField.setBounds(57, 24, 86, 20);
+		frmRegistroModelos.getContentPane().add(textField);
+		textField.setColumns(10);
 		
 		frmRegistroTelefonos = new FormularioRegistroTelefonos();
+		frmRegistroTelefonos.setLocation(110, 271);
 		frmRegistroTelefonos.setMaximizable(true);
 		frmRegistroTelefonos.setIconifiable(true);
 		frmRegistroTelefonos.setClosable(true);
