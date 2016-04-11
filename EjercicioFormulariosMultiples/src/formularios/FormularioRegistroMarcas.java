@@ -80,9 +80,12 @@ public class FormularioRegistroMarcas extends JInternalFrame {
 		btnNuevo.setBounds(10, 68, 89, 23);
 		getContentPane().add(btnNuevo);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 95, 263, 164);
+		getContentPane().add(scrollPane);
+		
 		lstResultado = new JList<Marca>();
-		lstResultado.setBounds(10, 95, 263, 164);
-		getContentPane().add(lstResultado);
+		scrollPane.setViewportView(lstResultado);
 		lstResultado.setModel(marcas);
 
 	}

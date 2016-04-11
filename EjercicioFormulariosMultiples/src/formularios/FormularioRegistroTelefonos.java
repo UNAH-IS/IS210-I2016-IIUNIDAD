@@ -1,9 +1,10 @@
 package formularios;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -34,7 +35,7 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 	private JLabel lblOperador;
 	
 	public static JComboBox<Marca> cboMarca;
-	private JComboBox<Modelo> cboModelo;
+	private static JComboBox<Modelo> cboModelo;
 	private JTextField txtNumero;
 	private JTextField txtIMEI;
 	private JTextField txtPrecio;
@@ -63,14 +64,21 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 	 * Create the frame.
 	 */
 	
+	public static void agregarModelo(Modelo m){
+		cboModelo.addItem(m);
+	}
+	
 	public void inicializarVentana(){
 		setSize(450,540);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setLayout(null);//Permite utilizar coordenadas para ubicar los componentes 
+		getContentPane().setLayout(null);//Permite utilizar coordenadas para ubicar los componentes 
 		setResizable(false);
 	}
 	
 	public FormularioRegistroTelefonos() {
+		setClosable(true);
+		setMaximizable(true);
+		setIconifiable(true);
 		setBounds(100, 100, 450, 398);
 		getContentPane().setLayout(null);
 		
@@ -124,10 +132,11 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 	public void llenarInformacionInicial(){
 		cboMarca.addItem(new Marca(1, "Samsung"));
 		cboMarca.addItem(new Marca(2, "Chino"));
-		
+		cboMarca.setSelectedItem(null);
 		cboModelo.addItem(new Modelo(1,"S5","S5"));
 		cboModelo.addItem(new Modelo(1,"S6","S6"));
 		cboModelo.addItem(new Modelo(1,"S7","S7"));
+		cboModelo.setSelectedItem(null);
 	}
 	
 	public void ubicarComponentes(){
@@ -178,35 +187,35 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 	}
 	
 	public void agregarComponentes(){
-		add(lblMarca);
-		add(lblModelo);
-		add(lblNumero);
-		add(lblIMEI);
-		add(lblSistemaOperativo);
-		add(lblPrecio);
-		add(lblAlmacenamiento);
-		add(lblOperador);
+		getContentPane().add(lblMarca);
+		getContentPane().add(lblModelo);
+		getContentPane().add(lblNumero);
+		getContentPane().add(lblIMEI);
+		getContentPane().add(lblSistemaOperativo);
+		getContentPane().add(lblPrecio);
+		getContentPane().add(lblAlmacenamiento);
+		getContentPane().add(lblOperador);
 		
-		add(cboMarca);
-		add(cboModelo);
-		add(txtNumero);
-		add(txtIMEI);
-		add(txtPrecio);
-		add(txtAlmacenamiento);
+		getContentPane().add(cboMarca);
+		getContentPane().add(cboModelo);
+		getContentPane().add(txtNumero);
+		getContentPane().add(txtIMEI);
+		getContentPane().add(txtPrecio);
+		getContentPane().add(txtAlmacenamiento);
 		
-		add(btnGuardar);
-		add(btnActualizar);
-		add(btnEliminar);
-		add(btnNuevo);
+		getContentPane().add(btnGuardar);
+		getContentPane().add(btnActualizar);
+		getContentPane().add(btnEliminar);
+		getContentPane().add(btnNuevo);
 		
-		add(rbtAndroid);
-		add(rbtIOS);
+		getContentPane().add(rbtAndroid);
+		getContentPane().add(rbtIOS);
 		
-		add(scrlResultado);
+		getContentPane().add(scrlResultado);
 		scrlResultado.setViewportView(txtResultado);
 		
-		add(chkTigo);
-		add(chkClaro);
+		getContentPane().add(chkTigo);
+		getContentPane().add(chkClaro);
 		
 	}
 	
@@ -246,9 +255,30 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 		txtIMEI.setText(null);
 		txtPrecio.setText(null);
 		txtAlmacenamiento.setText(null);
+		grupoSO.clearSelection();
 	}
 	
 	public void guardarRegistro(){
+		String errores = validarCampos();
+		double precio=0;
+		int almacenamiento=0;
+		try{
+			precio = Double.valueOf(txtPrecio.getText().equals("")?"0":txtPrecio.getText());
+		}catch(NumberFormatException e){
+			errores+="El precio debe ser un valor numerico\n";
+			//e.printStackTrace();
+		}
+		try{
+			almacenamiento = Integer.valueOf(txtAlmacenamiento.getText().equals("")?"0":txtAlmacenamiento.getText());
+		}catch(NumberFormatException e){
+			errores+="El almacenamiento debe ser un valor numerico\n";
+			//e.printStackTrace();
+		}
+		if (!errores.equals("")){
+			JOptionPane.showMessageDialog(null, errores);
+			return;
+		}
+			
 		String sistemaOperativo = "";
 		if (rbtAndroid.isSelected())
 			sistemaOperativo = "Android";
@@ -257,14 +287,16 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 		else
 			sistemaOperativo = "Otro";
 		
+		//(expresion)?valorVerdadero:valorFalso
+		
 		Telefono t = new Telefono(
 				(Marca)cboMarca.getSelectedItem(),
 				(Modelo)cboModelo.getSelectedItem(),
 				txtNumero.getText(),
 				txtIMEI.getText(),
 				sistemaOperativo,//rbtAndroid.isSelected()?"Android":"iOS",
-				Double.valueOf(txtPrecio.getText()),
-				Integer.valueOf(txtAlmacenamiento.getText())
+				precio,
+				almacenamiento
 		);
 		if (chkTigo.isSelected())
 			t.agregarOperador("Tigo");
@@ -310,5 +342,30 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 		//Llena utilizando un for each
 		for(Telefono t: telefonos)
 			txtResultado.append(t.toString() + "\n");
+	}
+	
+	public String validarCampos(){
+		String errores = "";
+		if (cboMarca.getSelectedItem()==null)
+			errores += "Debe seleccionar una marca\n";
+		if (cboModelo.getSelectedItem()==null)
+			errores += "Debe seleccionar un modelo\n";
+		if (txtNumero.getText().equals(""))
+			errores += "Debe ingresar el numero telefonico\n";
+		if (txtIMEI.getText().equals(""))
+			errores += "Debe ingresar el IMEI\n";
+		if (!(rbtAndroid.isSelected() || rbtIOS.isSelected()))
+			errores += "Debe seleccionar el sistema operativo\n";
+		if (txtAlmacenamiento.getText().equals(""))
+			errores += "Debe definir la capacidad de almacenamiento\n";
+		
+		//Validar el numero como que se tratara del numero de identidad
+		Pattern pattern = Pattern.compile("[0-9]{4}-[0-9]{4}-[0-9]{5}");//Patron a evaluar 
+		Matcher matcher = pattern.matcher(txtNumero.getText());
+		if (!matcher.matches()){
+			errores += "No coincide con el patron 9999-9999-99999\n";
+		}
+		
+		return errores;
 	}
 }

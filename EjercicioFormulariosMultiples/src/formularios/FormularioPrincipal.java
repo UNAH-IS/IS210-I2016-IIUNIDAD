@@ -24,13 +24,11 @@ public class FormularioPrincipal extends JFrame {
 	private FormularioRegistroMarcas frmRegistroMarcas;
 	private JMenuItem mntmRegistrarMarca;
 	private FormularioRegistroTelefonos frmRegistroTelefonos;
-	private JInternalFrame frmRegistroModelos;
+	private FormularioRegistroModelos frmRegistroModelos;
 	private JMenuItem mntmRegistrarTelefono;
 	private JMenuItem mntmRegistrarModelo;
 	private JToolBar toolBar;
 	private JButton btnAbrir;
-	private JButton btnNewButton;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -70,36 +68,13 @@ public class FormularioPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		frmRegistroMarcas = new FormularioRegistroMarcas();
-		frmRegistroMarcas.setLocation(20, 98);
-		frmRegistroMarcas.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		frmRegistroMarcas.setMaximizable(true);
-		frmRegistroMarcas.setIconifiable(true);
-		frmRegistroMarcas.setClosable(true);
 		contentPane.add(frmRegistroMarcas);
 		
-		frmRegistroModelos = new JInternalFrame("Registrar Modelos");
-		frmRegistroModelos.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		frmRegistroModelos.setClosable(true);
-		frmRegistroModelos.setIconifiable(true);
-		frmRegistroModelos.setMaximizable(true);
-		frmRegistroModelos.setBounds(599, 83, 275, 198);
-		contentPane.add(frmRegistroModelos);
+		frmRegistroModelos = new FormularioRegistroModelos();
 		frmRegistroModelos.getContentPane().setLayout(null);
-		
-		btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(23, 57, 89, 23);
-		frmRegistroModelos.getContentPane().add(btnNewButton);
-		
-		textField = new JTextField();
-		textField.setBounds(57, 24, 86, 20);
-		frmRegistroModelos.getContentPane().add(textField);
-		textField.setColumns(10);
+		contentPane.add(frmRegistroModelos);
 		
 		frmRegistroTelefonos = new FormularioRegistroTelefonos();
-		frmRegistroTelefonos.setLocation(110, 271);
-		frmRegistroTelefonos.setMaximizable(true);
-		frmRegistroTelefonos.setIconifiable(true);
-		frmRegistroTelefonos.setClosable(true);
 		contentPane.add(frmRegistroTelefonos);
 		
 		toolBar = new JToolBar();
