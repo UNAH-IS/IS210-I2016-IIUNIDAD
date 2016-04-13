@@ -1,0 +1,12 @@
+package ejemplo;
+
+public class EjemploFile {
+	public EjemploFile(){
+		
+	}
+
+	public static void main(String[] args) {
+		new EjemploFile();
+	}
+
+}

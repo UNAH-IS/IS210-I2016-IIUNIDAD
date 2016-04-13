@@ -1,0 +1,18 @@
+package ejemplo;
+
+import java.io.File; 
+//i: Input (entrada=>Lectura), o: Output(salida=>escritura)
+
+public class EjemploFile {
+	private File flujo;
+	public EjemploFile(){
+		//La clase File se utiliza para archivos o directorios
+		flujo = new File("HolaMundo.txt");
+		
+	}
+
+	public static void main(String[] args) {
+		new EjemploFile();
+	}
+
+}
