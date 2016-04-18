@@ -1,0 +1,15 @@
+package ejemplo;
+
+import java.io.BufferedOutputStream;
+
+public class EjemploBufferedOutputStream {
+	private BufferedOutputStream bos;
+	public EjemploBufferedOutputStream(){
+		bos = new BufferedOutputStream(new FileOutputStream(new File("C:\\Prueba\\HolaMundo.txt")));
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedOutputStream();
+	}
+
+}

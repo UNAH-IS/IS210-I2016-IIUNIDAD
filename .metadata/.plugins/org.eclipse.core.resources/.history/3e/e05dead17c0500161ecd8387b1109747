@@ -1,0 +1,10 @@
+package clases;
+
+public class Computadora {
+	private String marca;
+	private String modelo;
+	private String resolucion;
+	private int capacidadDisco;
+	private int capacidadMemoria;
+	
+}

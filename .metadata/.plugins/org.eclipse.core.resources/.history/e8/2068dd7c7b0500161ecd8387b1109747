@@ -1,0 +1,24 @@
+package ejemplo;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+public class EjemploBufferedOutputStream {
+	private BufferedOutputStream bos;
+	public EjemploBufferedOutputStream(){
+		try {
+			bos = new BufferedOutputStream(new FileOutputStream(new File("C:\\Prueba\\HolaMundo.txt")));
+			bos.write(65);
+			bos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedOutputStream();
+	}
+
+}

@@ -1,0 +1,11 @@
+package ejemplo;
+
+public class CopiarArchivo {
+	public CopiarArchivo(){
+		
+	}
+	public static void main(String[] args) {
+		new CopiarArchivo();
+	}
+
+}

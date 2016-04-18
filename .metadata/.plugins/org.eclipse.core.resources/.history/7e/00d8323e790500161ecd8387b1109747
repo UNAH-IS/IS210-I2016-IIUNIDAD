@@ -1,0 +1,12 @@
+package ejemplois;
+
+public class EjemploBufferedInputStream {
+	public EjemploBufferedInputStream(){
+		
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedInputStream();
+	}
+
+}

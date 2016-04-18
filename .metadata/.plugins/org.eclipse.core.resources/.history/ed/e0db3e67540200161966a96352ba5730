@@ -1,0 +1,20 @@
+package ejemplo;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public class EjemploBufferedReader {
+	private FileReader archivo;
+	public EjemploBufferedReader(){
+		try {
+			archivo = new FileReader("C:/Prueba/HolaMundo.java");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedReader();
+	}
+
+}

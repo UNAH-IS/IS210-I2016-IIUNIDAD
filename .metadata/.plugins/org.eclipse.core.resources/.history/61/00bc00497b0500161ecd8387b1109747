@@ -1,0 +1,12 @@
+package ejemplo;
+
+public class EjemploBufferedOutputStream {
+	public EjemploBufferedOutputStream(){
+		
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedOutputStream();
+	}
+
+}

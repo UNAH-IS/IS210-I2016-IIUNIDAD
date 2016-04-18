@@ -1,0 +1,11 @@
+package implementacion;
+
+public class EjemploObjectOutputStream {
+	public EjemploObjectOutputStream(){
+		
+	}
+	public static void main(String[] args) {
+		new EjemploObjectOutputStream();
+	}
+
+}

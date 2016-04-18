@@ -1,0 +1,12 @@
+package ejemplo;
+
+public class EjemploBufferedReader {
+	public EjemploBufferedReader(){
+		
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedReader();
+	}
+
+}

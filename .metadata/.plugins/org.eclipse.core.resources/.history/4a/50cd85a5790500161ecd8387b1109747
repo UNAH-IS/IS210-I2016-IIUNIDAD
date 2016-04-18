@@ -1,0 +1,30 @@
+package ejemplois;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class EjemploBufferedInputStream {
+	/*private File archivo;
+	private FileInputStream flujo;*/
+	private BufferedInputStream bis;
+	public EjemploBufferedInputStream(){
+		try {
+			/*archivo = new File("archivo.txt");
+			flujo = new FileInputStream(archivo);*/
+			bis = new BufferedInputStream(new FileInputStream(new File("archivo.txt")));
+			
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedInputStream();
+	}
+
+}

@@ -1,0 +1,13 @@
+package ejemplo;
+
+public class EjemploBufferedWriter {
+	
+	public EjemploBufferedWriter(){
+		
+	}
+	
+	public static void main(String[] args) {
+		new EjemploBufferedWriter();
+	}
+
+}
