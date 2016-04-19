@@ -1,0 +1,15 @@
+package implementacion;
+
+import clases.Computadora;
+
+public class EjemploObjectOutputStream {
+	public EjemploObjectOutputStream(){
+		Computadora c1 = new Computadora("Asus","NASJ","1024x768",13213,1321);
+		Computadora c2 = new Computadora("Dell","asda","1024x768",11111,22222);
+		Computadora c3 = new Computadora("Mac","sdfsd","1024x768",33333,44444);
+	}
+	public static void main(String[] args) {
+		new EjemploObjectOutputStream();
+	}
+
+}

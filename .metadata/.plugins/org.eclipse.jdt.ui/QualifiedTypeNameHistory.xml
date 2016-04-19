@@ -17,4 +17,9 @@
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
 <fullyQualifiedTypeName name="ejemplo.CopiarArchivo"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.BufferedInputStream"/>
+<fullyQualifiedTypeName name="ejemplo.EjemploBufferedOutputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>

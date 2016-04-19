@@ -1,0 +1,12 @@
+package implementacion;
+
+public class EjemploObjectInputStream {
+	public EjemploObjectInputStream(){
+		
+	}
+	
+	public static void main(String[] args) {
+		new EjemploObjectInputStream();
+	}
+
+}

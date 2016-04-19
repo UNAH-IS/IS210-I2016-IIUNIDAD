@@ -1,0 +1,24 @@
+package implementacion;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+public class EjemploObjectInputStream {
+	private ObjectInputStream ois;
+	public EjemploObjectInputStream(){
+		try {
+			ois = new ObjectInputStream(new FileInputStream("C:\\Prueba\\computadoras.dat"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new EjemploObjectInputStream();
+	}
+
+}
