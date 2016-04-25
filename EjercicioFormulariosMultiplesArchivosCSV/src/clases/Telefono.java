@@ -81,4 +81,14 @@ public class Telefono {
 				+ "," + almacenamientoBytes + ","+
 				operadores+"\n";
 	}
+	
+	public String toCSV() {
+		return 	marca.getCodigoMarca() + "," + marca.getNombreMarca() + "," +
+				modelo.getCodigoModelo() + "," + modelo.getNombreModelo() + ","+ 
+				modelo.getAbreviatura() + "," 
+				+ numero + "," + imei + ","
+				+ sistemaOperativo + "," + precio
+				+ "," + almacenamientoBytes + ","+
+				operadores.toString().replace(",", "-")+"\n";
+	}
 }

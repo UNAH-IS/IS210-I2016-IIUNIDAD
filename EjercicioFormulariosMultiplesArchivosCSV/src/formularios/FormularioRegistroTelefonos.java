@@ -95,17 +95,20 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 			while((linea = flujoLectura.readLine())!=null){
 				System.out.println(linea);
 				String campos[] = linea.split(",");
-				telefonos.add(
-						new Telefono(
-							new Marca(0,campos[0]),
-							new Modelo(0,campos[1],""),
-							campos[2],
-							campos[3],
-							campos[4],
-							Double.valueOf(campos[5]),
-							Integer.valueOf(campos[6])
-						)
+				Telefono t = new Telefono(
+						new Marca(Integer.valueOf(campos[0]),campos[1]),
+						new Modelo(Integer.valueOf(campos[2]),campos[3],campos[4]),
+						campos[5],
+						campos[6],
+						campos[7],
+						Double.valueOf(campos[8]),
+						Integer.valueOf(campos[9])
 				);
+				telefonos.add(t);
+				String operadores[] = (new String(campos[10])).split("-");
+				for (int i = 0; i<operadores.length; i++)
+					t.agregarOperador(operadores[i].replace("[", "").replace("]", ""));
+				
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -353,7 +356,7 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 		
 		try {
 			System.out.println("Intentando escribir en el archivo");
-			flujoEscritura.write(t.toString());
+			flujoEscritura.write(t.toCSV());
 			flujoEscritura.flush();			
 			System.out.println("Finalizo escritura");
 		} catch (IOException e) {
@@ -398,7 +401,7 @@ public class FormularioRegistroTelefonos extends JInternalFrame {
 		txtResultado.setText(null);
 		//Llena utilizando un for each
 		for(Telefono t: telefonos)
-			txtResultado.append(t.toString());
+			txtResultado.append(t.toCSV());
 	}
 	
 	public String validarCampos(){

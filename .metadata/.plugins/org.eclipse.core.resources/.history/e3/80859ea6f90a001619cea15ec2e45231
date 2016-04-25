@@ -1,0 +1,11 @@
+package clases;
+
+public class ArchivoConfiguraciones {
+	public ArchivoConfiguraciones(){
+		
+	}
+	public static void main(String[] args) {
+		new ArchivoConfiguraciones();
+	}
+
+}

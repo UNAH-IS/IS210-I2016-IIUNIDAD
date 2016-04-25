@@ -1,0 +1,24 @@
+package ejemplo;
+
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
+public class AbrirArchivo {
+	private JFileChooser dialogo;
+	public AbrirArchivo(){
+		dialogo = new JFileChooser("C:\\Prueba");
+		int resultado = dialogo.showOpenDialog(null);
+		if (resultado == JFileChooser.APPROVE_OPTION){
+			File archivo = dialogo.getSelectedFile();
+			System.out.println(archivo.getAbsolutePath());
+			System.out.println(archivo.getName());
+			System.out.println(archivo.getTotalSpace());
+		}
+		
+	}
+	public static void main(String[] args) {
+		new AbrirArchivo();
+	}
+
+}

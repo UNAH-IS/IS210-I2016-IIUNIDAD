@@ -1,0 +1,16 @@
+package clases;
+
+import java.util.Properties;
+
+public class ArchivoConfiguraciones {
+	private Properties propiedades;
+	public ArchivoConfiguraciones(){
+		propiedades = new Properties();
+		propiedades.load(new FileInputStream("C:\\Prueba\\propiedades.config"));
+		
+	}
+	public static void main(String[] args) {
+		new ArchivoConfiguraciones();
+	}
+
+}

@@ -1,0 +1,16 @@
+package ejemplo;
+
+import javax.swing.JFileChooser;
+
+public class AbrirArchivo {
+	private JFileChooser dialogo;
+	public AbrirArchivo(){
+		dialogo = new JFileChooser("C:\\Prueba");
+		dialogo.showOpenDialog(null);
+		
+	}
+	public static void main(String[] args) {
+		new AbrirArchivo();
+	}
+
+}

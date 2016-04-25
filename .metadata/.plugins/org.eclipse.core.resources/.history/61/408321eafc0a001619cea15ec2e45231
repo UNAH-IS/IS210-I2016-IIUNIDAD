@@ -1,0 +1,33 @@
+package ejemplo;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+import javax.swing.JFileChooser;
+
+public class AbrirArchivo {
+	private JFileChooser dialogo;
+	public AbrirArchivo(){
+		dialogo = new JFileChooser("C:\\Prueba");
+		int resultado = dialogo.showOpenDialog(null);
+		if (resultado == JFileChooser.APPROVE_OPTION){
+			File archivo = dialogo.getSelectedFile();
+			System.out.println(archivo.getAbsolutePath());
+			System.out.println(archivo.getName());
+			try {
+				BufferedReader flujo = new BufferedReader(new FileReader(archivo));
+				String linea;
+				while((linea = flujo.readLine())!=null)
+					System.out.println(linea);
+			} catch (FileNotFoundException e) 
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	public static void main(String[] args) {
+		new AbrirArchivo();
+	}
+
+}
